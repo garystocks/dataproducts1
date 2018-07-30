@@ -1,0 +1,33 @@
+---
+title: "Developing Data Products Week 2 Assignment"
+author: "Gary Stocks"
+date: "30 July 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(shiny)
+library(leaflet)
+
+```
+
+```{r title, echo=FALSE}
+
+shinyUI(fluidPage(titlePanel("Interactive Map: created 30 July 2018")))
+
+# shinyServer(function(input, output)) {})
+
+```
+
+
+```{r map, echo=FALSE}
+
+my_map <- leaflet() %>% 
+  addTiles()
+my_map
+
+
+```
+
