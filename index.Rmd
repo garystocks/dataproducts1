@@ -1,5 +1,5 @@
 ---
-title: "Developing Data Products Week 2 Assignment"
+title: "Populations of Major South African Cities"
 author: "Gary Stocks"
 date: "30 July 2018"
 output: html_document
@@ -13,21 +13,27 @@ library(leaflet)
 
 ```
 
-```{r title, echo=FALSE}
 
-shinyUI(fluidPage(titlePanel("Interactive Map: created 30 July 2018")))
+```{r, echo=FALSE, message=FALSE}
 
-# shinyServer(function(input, output)) {})
+df <- data.frame(pop = c(1000000, 3000000, 4000000, 2500000), 
+                 lat = c(-29.1183, -33.9249, -25.7313, -29.8579), 
+                 lng = c(26.2249, 18.4241, 28.2184, 31.0276))
+
+populations <- c(
+  "Population = 1 million",
+  "Population = 3 million",
+  "Population = 4 million",
+  "Population = 2.5 million"
+)
+
+
+df %>% leaflet() %>%
+        addTiles() %>%
+        addCircles(weight = 1, radius = sqrt(df$pop)*30) %>%
+        addMarkers(popup = populations, clusterOptions = markerClusterOptions()) %>%
+        setView(lat = -29, lng = 20, zoom = 3)
 
 ```
 
-
-```{r map, echo=FALSE}
-
-my_map <- leaflet() %>% 
-  addTiles()
-my_map
-
-
-```
 
